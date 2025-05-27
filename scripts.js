@@ -27,6 +27,19 @@ function formatCurrencyBRL(value) {
     return value
 }
 
+// Captura o evento de submit do formulario para obter os valores
 form.onsubmit = (e) => {
     e.preventDefault();
+
+    const newExpense = {
+        id: new Date().getTime(),
+        expense: expense.value,
+        category_id: category.value,
+        // Pega o valor da categoria selecionado, no caso, o texto dele.
+        category_name: category.options[category.selectedIndex].text,
+        amount: amount.value,
+        created_at: new Date(),
+    }
+
+    console.log(newExpense)
 }
