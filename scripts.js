@@ -4,6 +4,9 @@ const amount = document.querySelector('#amount');
 const expense = document.querySelector('#expense');
 const category = document.querySelector('#category');
 
+// Seleciona os elementos da lista
+const expenseList = document.querySelector('ul');
+
 // Captyra o evento de input para formator o valor
 amount.oninput = () => {
     // Para nao aceitar caracteres nao numeros vou usar regex
@@ -50,6 +53,18 @@ function expenseAdd(newExpense) {
         // Cria o elemento para adicionar o item na lista
         const expenseItem = document.createElement("li")
         expenseItem.classList.add("expense")
+
+        // Cria o icone da categoria
+        const expenseIcon = document.createElement("img")
+        expenseIcon.setAttribute("src", `img/${newExpense.category_id}.svg`)
+        expenseIcon.setAttribute("alt", newExpense.category_name)
+
+        // Adiciona as informacoes no item
+        expenseItem.append(expenseIcon)
+
+        // adiciona o item na lista
+        expenseList.append(expenseItem)
+
 
     } catch (error) {
         alert("Nao foi possivel atualizar a lsita de despesas")
