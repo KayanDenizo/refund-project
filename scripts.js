@@ -6,6 +6,7 @@ const category = document.querySelector('#category');
 
 // Seleciona os elementos da lista
 const expenseList = document.querySelector('ul');
+const expensesTotal = document.querySelector('aside header h2');
 const expensesQuantity = document.querySelector('aside header p span');
 
 // Captyra o evento de input para formator o valor
@@ -96,7 +97,7 @@ function expenseAdd(newExpense) {
         expenseList.append(expenseItem)
 
         // Atualiza os totais
-        updateTotals(); 
+        updateTotals();
 
 
     } catch (error) {
@@ -108,21 +109,35 @@ function expenseAdd(newExpense) {
 // Atualiza os totais
 function updateTotals() {
     try {
-    // Recupera os itens (li) da lista (ul)
-    const items = expenseList.children
-    
-    // Atualiza a quantidade de itens da lista
-    expensesQuantity.textContent = `${items.length} ${items.length > 1 ? "despesas" : "despesa"}`
+        // Recupera os itens (li) da lista (ul)
+        const items = expenseList.children
 
-    // Variavel para incrementar o total
-    let total = 0
-    
-    // Percorre cada item (li) da lista (ul)
-    for (let item = 0; item < items.length; item++) {
-        const itemAmount = items[item].querySelector(".expense-amount")
+        // Atualiza a quantidade de itens da lista
+        expensesQuantity.textContent = `${items.length} ${items.length > 1 ? "despesas" : "despesa"}`
 
-        console.log(itemAmount)
-    }
+        // Variavel para incrementar o total
+        let total = 0
+
+        // Percorre cada item (li) da lista (ul)
+        for (let item = 0; item < items.length; item++) {
+            const itemAmount = items[item].querySelector(".expense-amount")
+
+            // Remover caracteres nao numeros e substitui a virgula pelo ponto
+            let value = itemAmount.textContent.replace(/[^\d]/g, "").replace(",", ".")
+
+            // Converte o valor para float
+            value = parseFloat(value)
+
+            // Verificar se é um numero valido
+            if (isNaN(value)) {
+                return alert("Nao foi possivel calcular o total. O valor nao parece ser um numero.")
+            }
+
+            // Incrementar o valor total
+            total += Number(value)
+        }
+
+        expensesTotal.textContent = total
 
 
     } catch (error) {
