@@ -2,6 +2,9 @@
 
 
 
+
+<p align="center"><img src=".github/preview.png" alt="Página do refund-project" width="800"></p>
+
 ## 📝 Description
 
 Refund-project is a professional-grade financial management solution designed to automate and streamline the end-to-end refund process. It provides a structured framework for managing transaction reversals, tracking reimbursement requests, and ensuring seamless communication between businesses and their customers. By optimizing financial workflows and improving data accuracy, this project helps organizations enhance operational efficiency while providing a transparent and reliable experience for users seeking returns.
